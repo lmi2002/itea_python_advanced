@@ -4,7 +4,7 @@ class Stack:
     def __init__(self, data_type, limit):
         self.data_type = data_type
         self.limit = limit
-        self.stack = [1, 2, 3]
+        self.stack = []
 
         if not isinstance(self.limit, int):
             print("Введите целое число!")
@@ -37,12 +37,12 @@ class Stack:
         return self.data_type
 
 
-st = Stack(int, 6)
-stack = st.stack
-st.push(4)
-print(stack)
-st.clear()
-print(stack)
-
-
-
+if __name__ == '__main__':
+    st = Stack(str, 3)
+    stack = st.stack
+    st.push('rew')
+    print(stack)
+    print(st.pull())
+    print(stack)
+    st.clear()
+    print(stack)
