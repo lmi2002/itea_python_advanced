@@ -4,20 +4,17 @@ class Stack:
     def __init__(self, data_type, limit):
         self.data_type = data_type
         self.limit = limit
-        self.stack = list()
+        self.stack = [1, 2, 3]
 
         if not isinstance(self.limit, int):
             print("Введите целое число!")
         elif self.limit < 1:
             print("Введите число больше нуля!")
 
-    def count(self):
-        len(self.stack)
-
     def _push(self, obj):
         if not isinstance(obj, self.data_type):
             return TypeError
-        elif self.limit < self.count():
+        elif self.limit < self.stack.__len__():
             print('LimitExceedError')
         else:
             return obj
@@ -27,10 +24,10 @@ class Stack:
         self.stack.append(obj)
 
     def pull(self):
-        if self.count() == 0:
+        if self.stack.__len__() == 0:
             print('EmptyStackError')
         else:
-            return self.count()
+            return self.stack.__len__()
 
     def clear(self):
         self.stack.clear()
@@ -39,5 +36,12 @@ class Stack:
         return self.data_type
 
 
-st = Stack(int, 3)
-print(st.count())
+st = Stack(int, 6)
+stack = st.stack
+st.push(4)
+print(stack)
+st.clear()
+print(stack)
+
+
+
