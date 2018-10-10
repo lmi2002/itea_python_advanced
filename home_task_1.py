@@ -1,7 +1,7 @@
 
 class Stack:
 
-    def __init__(self, data_type, limit):
+    def __init__(self, data_type=object, limit=None):
         self.data_type = data_type
         self.limit = limit
         self.stack = []
