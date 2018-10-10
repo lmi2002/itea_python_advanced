@@ -27,7 +27,8 @@ class Stack:
         if self.stack.__len__() == 0:
             print('EmptyStackError')
         else:
-            return self.stack.__len__()
+            index = self.stack.__len__() - 1
+            return self.stack.pop(index)
 
     def clear(self):
         self.stack.clear()
