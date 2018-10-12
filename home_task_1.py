@@ -2,7 +2,7 @@ class LimitExceedError(Exception):
     pass
 
 
-class UncorrectValue(Exception):
+class ZeroValue(Exception):
     pass
 
 
@@ -14,14 +14,17 @@ class Stack:
 
     def __init__(self, data_type=object, limit=None):
         self.data_type = data_type
-        self.limit = limit
+        self.limit = int(limit)
         self.stack = []
+
+        if limit == 0:
+            raise ZeroValue("Number must be greater than zero!")
 
     def _push(self, obj):
         if not isinstance(obj, self.data_type):
             raise TypeError
         elif self.limit < self.stack.__len__():
-            raise LimitExceedError("Limit over stack")
+            raise LimitExceedError("Limit over stack!")
         else:
             return obj
 
@@ -31,7 +34,7 @@ class Stack:
 
     def pull(self):
         if self.stack.__len__() == 0:
-            raise EmptyStackError("Stack is empty")
+            raise EmptyStackError("Stack is empty!")
         else:
             return self.stack.pop()
 
