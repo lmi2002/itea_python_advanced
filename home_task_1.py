@@ -1,3 +1,14 @@
+class LimitExceedError(Exception):
+    pass
+
+
+class UncorrectValue(Exception):
+    pass
+
+
+class EmptyStackError(Exception):
+    pass
+
 
 class Stack:
 
@@ -6,16 +17,11 @@ class Stack:
         self.limit = limit
         self.stack = []
 
-        if not isinstance(self.limit, int):
-            print("Введите целое число!")
-        elif self.limit < 1:
-            print("Введите число больше нуля!")
-
     def _push(self, obj):
         if not isinstance(obj, self.data_type):
-            return TypeError
+            raise TypeError
         elif self.limit < self.stack.__len__():
-            print('LimitExceedError')
+            raise LimitExceedError("Limit over stack")
         else:
             return obj
 
@@ -25,24 +31,19 @@ class Stack:
 
     def pull(self):
         if self.stack.__len__() == 0:
-            print('EmptyStackError')
+            raise EmptyStackError("Stack is empty")
         else:
-            index = self.stack.__len__() - 1
-            return self.stack.pop(index)
+            return self.stack.pop()
+
+    def count(self):
+        return self.stack.__len__()
 
     def clear(self):
         self.stack.clear()
 
+    @property
     def type(self):
         return self.data_type
 
-
-if __name__ == '__main__':
-    st = Stack(str, 3)
-    stack = st.stack
-    st.push('rew')
-    print(stack)
-    print(st.pull())
-    print(stack)
-    st.clear()
-    print(stack)
+    def __str__(self):
+        return 'Stack<{}>'.format(str(self.type)[7:-1])
