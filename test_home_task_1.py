@@ -44,6 +44,16 @@ def test_check_limit():
     assert st.stack.__len__() == 3
 
 
+def test_check_push():
+    """
+    Check of the method push
+    """
+    st = Stack(data_type=int, limit=2)
+    st.stack = [1]
+    st.push(2)
+    assert st.stack[1] == 2
+
+
 def test_check_pull():
     """
     Check of the method pull
