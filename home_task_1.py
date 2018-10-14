@@ -5,13 +5,6 @@ class LimitExceedError(Exception):
     pass
 
 
-class ZeroValue(Exception):
-    """
-    Raises when the number is zero
-    """
-    pass
-
-
 class EmptyStackError(Exception):
     """
     Raises when trying to pull item from empty stack.
@@ -35,9 +28,6 @@ class Stack:
         self.limit = limit
         self.stack = []
 
-        if limit == 0:
-            raise ZeroValue("Number must be greater than zero!")
-
     def _push(self, obj):
         """
         Checks incoming element for type and limit and returns it
@@ -46,14 +36,12 @@ class Stack:
             raise TypeError
         elif self.limit < self.stack.__len__():
             raise LimitExceedError("Limit over stack!")
-        else:
-            return obj
 
     def push(self, obj):
         """
         Adds element to the stack
         """
-        obj = self._push(obj)
+        self._push(obj)
         self.stack.append(obj)
 
     def pull(self):
@@ -69,7 +57,7 @@ class Stack:
         """
         Counts the number of elements in the stack and returns it
         """
-        return self.stack.__len__()
+        return len(self.stack)
 
     def clear(self):
         """
@@ -88,4 +76,4 @@ class Stack:
         """
         Returns a string with an object of type
         """
-        return 'Stack<{}>'.format(str(self.type)[7:-1])
+        return 'Stack<' + self.data_type.__name__ + '>'

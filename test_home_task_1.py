@@ -31,7 +31,7 @@ def test_check___str__():
     Check of the method ___str__
     """
     st = Stack(data_type=int, limit=2)
-    assert st.__str__() == "Stack<'int'>"
+    assert st.__str__() == "Stack<int>"
 
 
 def test_check_limit():
