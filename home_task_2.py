@@ -1,5 +1,14 @@
 import os
 import json
+import time
+
+
+def process(func):
+    def wrapper(*args):
+        print(func.__name__)
+        print(time.time())
+        func(*args)
+    return wrapper
 
 
 def get_sum(file, name_file):
@@ -7,15 +16,16 @@ def get_sum(file, name_file):
         for line in file.readlines():
             data = json.loads(line)
             file.close()
-            return name_file + ": sum = " + str(sum(data))
+            return name_file + ": sum = " + str(sum(data)) + "\n"
     except Exception:
         file.close()
         remove_file_catalog_error('catalog_writing_files', 'catalog_error_files', name_file)
 
 
 def record_to_file(cat_result, file, txt=None):
-    file = open(os.path.join(os.path.abspath('catalogs'), cat_result, file), 'a', encoding='utf-8')
-    file.writelines(txt)
+        file = open(os.path.join(os.path.abspath('catalogs'), cat_result, file), 'a', encoding='utf-8')
+        file.writelines(txt)
+        file.close()
 
 
 def remove_file_catalog_error(cat_read=None, cat_err=None, file=None):
@@ -24,6 +34,7 @@ def remove_file_catalog_error(cat_read=None, cat_err=None, file=None):
     os.replace(src, dst)
 
 
+@process
 def monitor(cat_read=None, cat_result=None, cat_err=None):
     list_to_data_result = []
     tuple_path_files = (os.walk(os.path.abspath('catalogs')))
