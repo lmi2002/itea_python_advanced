@@ -22,7 +22,7 @@ def read_file_position(file, qty_sym):
 
 if __name__ == '__main__':
     w = read_end_position('home_3.txt')
-    r = read_file_position('home_3.txt', 2)
+    r = read_file_position('home_3.txt', 1)
     while w:
         if w == 0:
             break
