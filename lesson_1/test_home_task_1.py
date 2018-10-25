@@ -1,6 +1,4 @@
-import pytest
-
-from home_task_1 import Stack
+from lesson_1.home_task_1 import Stack
 
 """
 Test to test class methods Stack:
