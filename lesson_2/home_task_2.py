@@ -6,8 +6,10 @@ import time
 def process(func):
     def wrapper(*args):
         print(func.__name__)
-        print(time.time())
+        start = time.time()
         func(*args)
+        finish = time.time()
+        print(finish - start)
     return wrapper
 
 
