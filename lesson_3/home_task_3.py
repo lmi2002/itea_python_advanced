@@ -27,5 +27,3 @@ if __name__ == '__main__':
         if w == 0:
             break
         w = r(w)
-
-
