@@ -41,7 +41,7 @@ def remove_file_catalog_error(cat_read=None, cat_err=None, file=None):
 #@process
 def monitor(cat_read=None, cat_result=None, cat_err=None):
     list_to_data_result = []
-    tuple_path_files = os.walk('../catalogs')
+    tuple_path_files = os.walk(os.path.abspath('catalogs'))
     print(tuple_path_files)
     list_file = [file[2] for file in tuple_path_files]
     list_txt = list(filter(lambda file: file if file.split('.')[1] == 'txt' else \
