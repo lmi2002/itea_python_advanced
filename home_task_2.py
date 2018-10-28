@@ -33,13 +33,15 @@ def record_to_file(cat_result, file, txt=None):
 def remove_file_catalog_error(cat_read=None, cat_err=None, file=None):
     src = os.path.join(os.path.abspath('catalogs'), cat_read, file)
     dst = os.path.join(os.path.abspath('catalogs'), cat_err, file)
+    print(src)
+    print(dst)
     os.replace(src, dst)
 
 
 #@process
 def monitor(cat_read=None, cat_result=None, cat_err=None):
     list_to_data_result = []
-    tuple_path_files = os.walk('catalogs')
+    tuple_path_files = os.walk('../catalogs')
     print(tuple_path_files)
     list_file = [file[2] for file in tuple_path_files]
     list_txt = list(filter(lambda file: file if file.split('.')[1] == 'txt' else \
