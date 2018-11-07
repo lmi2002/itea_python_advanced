@@ -1,38 +1,38 @@
-import sys
 import re
-
-
-def input_value(key):
-    def enclose(key):
-        while True:
-            return input('input value ' + key + ' = ')
-    return enclose
-
-
-key = None
-value = None
-dct = {}
-cls = input('Input new class: ')
-
-while True:
-    key = input('input name arg - ')
-    enclose = input_value(key)
-    enclose(key)
-    empty_string = input('Want to finish typing? Yes: input an empty string, Not: press enter!')
-
-
-def decorator_validate_name(func):
-    def wrapper(func):
-        name = func()
-        reg = re.compile('^[a-zA-Z_]+[a-zA-Z_0-9]*$')
-        if not reg.match(name):
-            raise NameError('Wrong variable name')
-    return wrapper
-
 
 
 def validate_name(name):
     reg = re.compile('^[a-zA-Z_]+[a-zA-Z_0-9]*$')
     if not reg.match(name):
         raise NameError('Wrong variable name')
+    else:
+        return True
 
+
+def input_arg():
+    arg = input('input name arg: ')
+    if validate_name(arg):
+        return arg
+
+
+def input_value(arg):
+    def enclose(arg):
+        while True:
+            val = input('input value ' + arg + ' = ')
+            if validate_name(arg):
+                return val
+    return enclose
+
+
+arg = None
+value = None
+dct = {}
+cls = input('Input new class: ')
+
+while True:
+    arg = input_arg()
+    enclose = input_value(arg)
+    enclose(arg)
+    empty_string = input('Input empty string to quick: ')
+    if empty_string == '""' or empty_string == "''":
+        break
