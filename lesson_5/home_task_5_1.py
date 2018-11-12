@@ -10,20 +10,28 @@ def validate_name(name):
 
 
 def input_arg():
-    arg = input('input name arg: ')
-    if validate_name(arg):
-        return arg
+    while True:
+        arg = input('input name arg: ')
+        try:
+            if validate_name(arg):
+                return arg
+        except NameError:
+            print('Wrong variable name')
 
 
 def input_value(arg):
     def enclose(arg):
         while True:
             val = input('input value ' + arg + ' = ')
-            if validate_name(arg):
-                return val
+            try:
+                if validate_name(val):
+                    return val
+            except NameError:
+                print('Wrong variable name')
     return enclose
 
 
+lst = [];
 arg = None
 value = None
 dct = {}
@@ -32,7 +40,11 @@ cls = input('Input new class: ')
 while True:
     arg = input_arg()
     enclose = input_value(arg)
-    enclose(arg)
+    val = enclose(arg)
+    lst.append({arg:val})
     empty_string = input('Input empty string to quick: ')
     if empty_string == '""' or empty_string == "''":
         break
+
+print(lst)
+
