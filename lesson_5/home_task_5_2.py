@@ -1,0 +1,2 @@
+class ConstAttributeError(Exception):
+    pass

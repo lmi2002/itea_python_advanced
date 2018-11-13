@@ -31,20 +31,29 @@ def input_value(arg):
     return enclose
 
 
-lst = [];
-arg = None
-value = None
-dct = {}
-cls = input('Input new class: ')
+def output(self):
+    describe = 'Class <{}>:\n'.format(self.__class__.__name__)
+    params = '\n'.join(['{key} = {value}'.format(key=k, value=v) for k, v in self.__class__.__dict__.items() if
+                        not k.startswith('__')])
+    return describe + params
 
-while True:
-    arg = input_arg()
-    enclose = input_value(arg)
-    val = enclose(arg)
-    lst.append({arg:val})
-    empty_string = input('Input empty string to quick: ')
-    if empty_string == '""' or empty_string == "''":
-        break
 
-print(lst)
+def main():
+    arg = None
+    value = None
+    dct = {}
+    cls = input('Input new class: ')
 
+    while True:
+        arg = input_arg()
+        enclose = input_value(arg)
+        val = enclose(arg)
+        dct.update({arg: val})
+        empty_string = input('Input empty string to quick: ')
+        if empty_string == '""' or empty_string == "''":
+            break
+
+    dct.update({'__str__': output})
+    Myclass = type(cls, (), dct)
+    a = Myclass()
+    print(a)
