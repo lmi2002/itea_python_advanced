@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*
 
 import socket
-import os
+
 
 def run():
+
     sock = socket.socket()
     sock.bind(('', 9000))
     sock.listen(5)
